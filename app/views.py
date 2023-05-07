@@ -17,7 +17,7 @@ class ExplorerDeliveredUIViewSet(viewsets.ModelViewSet):
     def create(self, request, *args, **kwargs):
         data = request.data
 
-        new_ui = ExplorerDeliveredUI.objects.create(image=data["image"], name=data['name'])
+        new_ui = ExplorerDeliveredUI.objects.create(name=data['name'], category=data["category"])
 
         new_ui.save()
 

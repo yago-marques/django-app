@@ -4,7 +4,7 @@ from app.models import ExplorerDeliveredUI, ExplorerOverviewItem
 class ExplorerDeliveredUISerializer(serializers.ModelSerializer):
     class Meta:
         model = ExplorerDeliveredUI
-        fields = ['id', 'image', 'name', 'itens']
+        fields = ['id', 'name', 'category', 'itens']
         depth = 1
         
 class ExplorerOverviewItemSerializer(serializers.ModelSerializer):

@@ -2,8 +2,8 @@ from django.contrib import admin
 from app.models import ExplorerDeliveredUI, ExplorerOverviewItem
 
 class ExplorerDeliveredUIs(admin.ModelAdmin):
-    list_display = ('id', 'image', 'name')
-    list_filter = ['name']
+    list_display = ('id', 'name', 'category')
+    list_filter = ['name', 'category']
     list_per_page = True
     list_display_links = ['name']
     search_fields = ['name']
