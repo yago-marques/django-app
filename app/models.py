@@ -8,8 +8,8 @@ class ExplorerOverviewItem(models.Model):
         return self.title
     
 class ExplorerDeliveredUI(models.Model):
-    image = models.ImageField()
     name = models.CharField(max_length=30)
+    category = models.CharField(max_length=30)
     itens = models.ManyToManyField(ExplorerOverviewItem, blank=False)
     
     def __str__(self) -> str:
