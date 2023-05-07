@@ -1,12 +1,13 @@
 from rest_framework import serializers
-from app.models import Post, User
+from app.models import ExplorerDeliveredUI, ExplorerOverviewItem
 
-class PostSerializer(serializers.ModelSerializer):
+class ExplorerDeliveredUISerializer(serializers.ModelSerializer):
     class Meta:
-        model = Post
-        fields = '__all__'
+        model = ExplorerDeliveredUI
+        fields = ['id', 'image', 'name', 'itens']
+        depth = 1
         
-class UserSerializer(serializers.ModelSerializer):
+class ExplorerOverviewItemSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = '__all__'
+        model = ExplorerOverviewItem
+        fields = ['id', 'title', 'description']

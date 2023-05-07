@@ -1,11 +1,37 @@
 from rest_framework import viewsets
-from app.models import Post, User
-from app.serializer import PostSerializer, UserSerializer
+from rest_framework.response import Response
+from app.models import ExplorerDeliveredUI, ExplorerOverviewItem
+from app.serializer import ExplorerDeliveredUISerializer, ExplorerOverviewItemSerializer
 
-class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+class ExplorerDeliveredUIViewSet(viewsets.ModelViewSet):
+    serializer_class = ExplorerDeliveredUISerializer
+
+    def get_queryset(self):
+        queryset = ExplorerDeliveredUI.objects.all()
+        return queryset
     
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
+    def create(self, request, *args, **kwargs):
+        data = request.data
+
+        new_ui = ExplorerDeliveredUI.objects.create(image=data["image"], name=data['name'])
+
+        new_ui.save()
+
+        for item in data["itens"]:
+            new_obj = ExplorerOverviewItem.objects.create(title=item["title"], description=item["description"])
+
+            new_obj.save()
+            
+            overview_obj = ExplorerOverviewItem.objects.get(title=item["title"], description=item["description"])
+            new_ui.itens.add(overview_obj)
+
+        serializer = ExplorerDeliveredUISerializer(new_ui)
+
+        return Response(serializer.data)
+    
+class ExplorerOverviewItemViewSet(viewsets.ModelViewSet):
+    serializer_class = ExplorerOverviewItemSerializer
+    
+    def get_queryset(self):
+        queryset = ExplorerOverviewItem.objects.all()
+        return queryset

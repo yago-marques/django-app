@@ -1,14 +1,14 @@
 from django.contrib import admin
 from django.urls import path, include
-from app.views import PostViewSet, UserViewSet
+from app.views import ExplorerDeliveredUIViewSet, ExplorerOverviewItemViewSet
 from rest_framework import routers
 from rest_framework.schemas import get_schema_view
 from django.views.generic import TemplateView
 
 
 router = routers.DefaultRouter()
-router.register(r'posts', PostViewSet)
-router.register(r'users', UserViewSet)
+router.register('deliveredUi', ExplorerDeliveredUIViewSet, basename="deliveredUI")
+router.register('overviewItem', ExplorerOverviewItemViewSet, basename="overviewItem")
 
 urlpatterns = [
     path('', include(router.urls)),

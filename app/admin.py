@@ -1,19 +1,19 @@
 from django.contrib import admin
-from app.models import Post, User
+from app.models import ExplorerDeliveredUI, ExplorerOverviewItem
 
-class Posts(admin.ModelAdmin):
-    list_display = ('id', 'title', 'content', 'view_average', 'is_published')
-    list_filter = ('title', 'view_average')
+class ExplorerDeliveredUIs(admin.ModelAdmin):
+    list_display = ('id', 'image', 'name')
+    list_filter = ['name']
     list_per_page = True
-    list_display_links = ['title']
-    search_fields = ['title']
-    
-class Users(admin.ModelAdmin):
-    list_display = ('id', 'name', 'age')
     list_display_links = ['name']
-    list_filter = ('name', 'age')
-    list_per_page = True
     search_fields = ['name']
+    
+class ExplorerOverviewItems(admin.ModelAdmin):
+    list_display = ('id', 'title', 'description')
+    list_display_links = ['title']
+    list_filter = ('title', 'description')
+    list_per_page = True
+    search_fields = ['title']
        
-admin.site.register(Post, Posts)
-admin.site.register(User, Users)
+admin.site.register(ExplorerDeliveredUI, ExplorerDeliveredUIs)
+admin.site.register(ExplorerOverviewItem, ExplorerOverviewItems)
