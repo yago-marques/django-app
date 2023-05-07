@@ -2,9 +2,13 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from app.models import ExplorerDeliveredUI, ExplorerOverviewItem
 from app.serializer import ExplorerDeliveredUISerializer, ExplorerOverviewItemSerializer
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 class ExplorerDeliveredUIViewSet(viewsets.ModelViewSet):
     serializer_class = ExplorerDeliveredUISerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         queryset = ExplorerDeliveredUI.objects.all()
@@ -31,6 +35,8 @@ class ExplorerDeliveredUIViewSet(viewsets.ModelViewSet):
     
 class ExplorerOverviewItemViewSet(viewsets.ModelViewSet):
     serializer_class = ExplorerOverviewItemSerializer
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
     
     def get_queryset(self):
         queryset = ExplorerOverviewItem.objects.all()

@@ -5,7 +5,6 @@ from rest_framework import routers
 from rest_framework.schemas import get_schema_view
 from django.views.generic import TemplateView
 
-
 router = routers.DefaultRouter()
 router.register('deliveredUi', ExplorerDeliveredUIViewSet, basename="deliveredUI")
 router.register('overviewItem', ExplorerOverviewItemViewSet, basename="overviewItem")
